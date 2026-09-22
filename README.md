@@ -14,6 +14,19 @@ Yeadon 发起的电商数字达人匹配原型。输入商品图片、名称和�
 
 ![原创插画样例渲染预览](docs/demo-preview.jpg)
 
+## 完整影片与 Hypit 工程
+
+已公开当前 **26 秒高清商品快闪版**，包含全部编辑工程、99 张高清商品图、人物图集、音轨、配对数据和两种品牌成片：
+
+- [贯一科技版 MP4](productions/hd-fast/videos/guanyi-hd.mp4)
+- [Yeadon 版 MP4](productions/hd-fast/videos/yeadon-hd.mp4)
+- [完整工程与重新导出说明](productions/hd-fast/README.md)
+- [下一版创意方案（尚未制作）](productions/hd-fast/NEXT-VERSION.md)
+
+[![贯一科技高清版](productions/hd-fast/preview.jpg)](productions/hd-fast/videos/guanyi-hd.mp4)
+
+安装环境后运行 `npm run video:hd` 即可重新导出。生产媒体的来源和使用范围见 [媒体说明](productions/hd-fast/MEDIA-NOTICE.md)，与下方 MIT 原创插画示例分开说明。
+
 ## 三步跑通无密钥演示
 
 需要 **Node.js 22+、Python 3.10+、FFmpeg / FFprobe、Chrome 或 Chromium**。已在 macOS 验证；Linux 可通过 `CHROME_PATH` 指定浏览器。Windows 尚未验证。
@@ -126,4 +139,4 @@ CI 执行类型检查、单元测试及演示工程生成，不调用收费接�
 
 ## License
 
-代码及原创示例素材：MIT，© 2026 Yeadon。Jev、Hypit 及模型服务分别遵循其自身条款。项目非官方出品。
+代码及 `examples/` 原创示例素材：MIT，© 2026 Yeadon。`productions/` 中的生产媒体不包含在 MIT 素材授权内，见各工程的媒体说明。Jev、Hypit 及模型服务分别遵循其自身条款。项目非官方出品。

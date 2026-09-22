@@ -5,14 +5,16 @@
   "type": "module",
   "description": "Product-to-creator matching with Jev and reproducible Hypit videos",
   "scripts": {
-    "build": "tsc -p packages/commerce-scene/tsconfig.json",
+    "build": "tsc -p packages/commerce-scene/tsconfig.json && tsc -p packages/hd-fast/tsconfig.json",
     "test": "python3 -m unittest discover -s tests",
     "setup": "python3 render.py setup",
-    "demo": "python3 render.py demo"
+    "demo": "python3 render.py demo",
+    "video:hd": "python3 productions/hd-fast/export.py"
   },
   "dependencies": {
     "@hypit/hypit": "0.2.12",
-    "@yeadon/commerce-scene": "file:packages/commerce-scene"
+    "@yeadon/commerce-scene": "file:packages/commerce-scene",
+    "@jev/hd-fast": "file:packages/hd-fast"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

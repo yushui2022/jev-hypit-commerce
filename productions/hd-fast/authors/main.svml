@@ -1,0 +1,129 @@
+<?svml using="@hypit/markup@1"?>
+<svml>
+ <import as="time" from="@hypit/timeline-author@1"/>
+ <import as="spatial" from="@hypit/spatial@1"/>
+ <import as="fonts" from="@hypit/fonts-open@1"/>
+ <import as="asset" from="@hypit/media@1"/>
+ <import as="match" from="@jev/hd-fast@1"/>
+ <import as="film" from="@hypit/film@1"/>
+ <import as="render" from="@hypit/render-hyperframes@1"/>
+ <import as="pipeline" from="@hypit/media-pipeline@1"/>
+ <import as="audio" from="@hypit/audio-track@1"/>
+ <import as="look" source="./main.svs"/>
+ <time:Clock id="clock" frame-rate="30"/>
+ <time:Timeline id="program" clock={clock} end="26s"/>
+ <spatial:Canvas id="canvas" width="1280" height="720"/>
+ <fonts:Stack id="font" family="inter" weight="600" style="normal"><fonts:Fallback family="noto-sans-sc" weight="600" style="normal"/></fonts:Stack>
+ <asset:Image id="sheet0" src="../assets/avatars/library-beauty.png"/>
+ <asset:Image id="sheet1" src="../assets/avatars/library-style.png"/>
+ <asset:Image id="sheet2" src="../assets/avatars/library-active.png"/>
+ <asset:Image id="sheet3" src="../assets/avatars/library-home.png"/>
+ <asset:Image id="sheet4" src="../assets/avatars/library-tech.png"/>
+ <asset:Image id="product1" src="../assets/products/001.webp"/>
+ <asset:Image id="product2" src="../assets/products/002.webp"/>
+ <asset:Image id="product3" src="../assets/products/003.webp"/>
+ <asset:Image id="product4" src="../assets/products/004.webp"/>
+ <asset:Image id="product5" src="../assets/products/005.webp"/>
+ <asset:Image id="product6" src="../assets/products/006.webp"/>
+ <asset:Image id="product7" src="../assets/products/007.webp"/>
+ <asset:Image id="product8" src="../assets/products/008.webp"/>
+ <asset:Image id="product9" src="../assets/products/009.webp"/>
+ <asset:Image id="product10" src="../assets/products/010.webp"/>
+ <asset:Image id="product11" src="../assets/products/011.webp"/>
+ <asset:Image id="product12" src="../assets/products/012.webp"/>
+ <asset:Image id="product13" src="../assets/products/013.webp"/>
+ <asset:Image id="product14" src="../assets/products/014.webp"/>
+ <asset:Image id="product15" src="../assets/products/015.webp"/>
+ <asset:Image id="product16" src="../assets/products/016.webp"/>
+ <asset:Image id="product17" src="../assets/products/017.webp"/>
+ <asset:Image id="product18" src="../assets/products/018.webp"/>
+ <asset:Image id="product19" src="../assets/products/019.webp"/>
+ <asset:Image id="product20" src="../assets/products/020.webp"/>
+ <asset:Image id="product21" src="../assets/products/021.webp"/>
+ <asset:Image id="product22" src="../assets/products/022.webp"/>
+ <asset:Image id="product23" src="../assets/products/023.webp"/>
+ <asset:Image id="product24" src="../assets/products/024.webp"/>
+ <asset:Image id="product25" src="../assets/products/025.webp"/>
+ <asset:Image id="product26" src="../assets/products/026.webp"/>
+ <asset:Image id="product27" src="../assets/products/027.webp"/>
+ <asset:Image id="product28" src="../assets/products/028.webp"/>
+ <asset:Image id="product29" src="../assets/products/029.webp"/>
+ <asset:Image id="product30" src="../assets/products/030.webp"/>
+ <asset:Image id="product31" src="../assets/products/031.webp"/>
+ <asset:Image id="product32" src="../assets/products/032.webp"/>
+ <asset:Image id="product33" src="../assets/products/033.webp"/>
+ <asset:Image id="product34" src="../assets/products/034.webp"/>
+ <asset:Image id="product35" src="../assets/products/035.webp"/>
+ <asset:Image id="product36" src="../assets/products/036.webp"/>
+ <asset:Image id="product37" src="../assets/products/037.webp"/>
+ <asset:Image id="product38" src="../assets/products/038.webp"/>
+ <asset:Image id="product39" src="../assets/products/039.webp"/>
+ <asset:Image id="product40" src="../assets/products/040.webp"/>
+ <asset:Image id="product41" src="../assets/products/041.webp"/>
+ <asset:Image id="product42" src="../assets/products/042.webp"/>
+ <asset:Image id="product43" src="../assets/products/043.webp"/>
+ <asset:Image id="product44" src="../assets/products/044.webp"/>
+ <asset:Image id="product45" src="../assets/products/045.webp"/>
+ <asset:Image id="product46" src="../assets/products/046.webp"/>
+ <asset:Image id="product47" src="../assets/products/047.webp"/>
+ <asset:Image id="product48" src="../assets/products/048.webp"/>
+ <asset:Image id="product49" src="../assets/products/049.webp"/>
+ <asset:Image id="product50" src="../assets/products/050.webp"/>
+ <asset:Image id="product51" src="../assets/products/051.webp"/>
+ <asset:Image id="product52" src="../assets/products/052.webp"/>
+ <asset:Image id="product53" src="../assets/products/053.webp"/>
+ <asset:Image id="product54" src="../assets/products/054.webp"/>
+ <asset:Image id="product55" src="../assets/products/055.webp"/>
+ <asset:Image id="product56" src="../assets/products/056.webp"/>
+ <asset:Image id="product57" src="../assets/products/057.webp"/>
+ <asset:Image id="product58" src="../assets/products/058.webp"/>
+ <asset:Image id="product59" src="../assets/products/059.webp"/>
+ <asset:Image id="product60" src="../assets/products/060.webp"/>
+ <asset:Image id="product61" src="../assets/products/061.webp"/>
+ <asset:Image id="product62" src="../assets/products/062.webp"/>
+ <asset:Image id="product63" src="../assets/products/063.webp"/>
+ <asset:Image id="product64" src="../assets/products/064.webp"/>
+ <asset:Image id="product65" src="../assets/products/065.webp"/>
+ <asset:Image id="product66" src="../assets/products/066.webp"/>
+ <asset:Image id="product67" src="../assets/products/067.webp"/>
+ <asset:Image id="product68" src="../assets/products/068.webp"/>
+ <asset:Image id="product69" src="../assets/products/069.webp"/>
+ <asset:Image id="product70" src="../assets/products/070.webp"/>
+ <asset:Image id="product71" src="../assets/products/071.webp"/>
+ <asset:Image id="product72" src="../assets/products/072.webp"/>
+ <asset:Image id="product73" src="../assets/products/073.webp"/>
+ <asset:Image id="product74" src="../assets/products/074.webp"/>
+ <asset:Image id="product75" src="../assets/products/075.webp"/>
+ <asset:Image id="product76" src="../assets/products/076.webp"/>
+ <asset:Image id="product77" src="../assets/products/077.webp"/>
+ <asset:Image id="product78" src="../assets/products/078.webp"/>
+ <asset:Image id="product79" src="../assets/products/079.webp"/>
+ <asset:Image id="product80" src="../assets/products/080.webp"/>
+ <asset:Image id="product81" src="../assets/products/081.webp"/>
+ <asset:Image id="product82" src="../assets/products/082.webp"/>
+ <asset:Image id="product83" src="../assets/products/083.webp"/>
+ <asset:Image id="product84" src="../assets/products/084.webp"/>
+ <asset:Image id="product85" src="../assets/products/085.webp"/>
+ <asset:Image id="product86" src="../assets/products/086.webp"/>
+ <asset:Image id="product87" src="../assets/products/087.webp"/>
+ <asset:Image id="product88" src="../assets/products/088.webp"/>
+ <asset:Image id="product89" src="../assets/products/089.webp"/>
+ <asset:Image id="product90" src="../assets/products/090.webp"/>
+ <asset:Image id="product91" src="../assets/products/091.webp"/>
+ <asset:Image id="product92" src="../assets/products/092.webp"/>
+ <asset:Image id="product93" src="../assets/products/093.webp"/>
+ <asset:Image id="product94" src="../assets/products/094.webp"/>
+ <asset:Image id="product95" src="../assets/products/095.webp"/>
+ <asset:Image id="product97" src="../assets/products/097.webp"/>
+ <asset:Image id="product98" src="../assets/products/098.webp"/>
+ <asset:Image id="product99" src="../assets/products/099.webp"/>
+ <asset:Image id="product100" src="../assets/products/100.webp"/>
+ <asset:Audio id="music" src="../assets/soundtrack.wav"/>
+ <pipeline:Normalize id="music-media" source={music} clock={clock} video="none" audio="default" span-authority="audio"/>
+ <audio:Track id="soundtrack" timeline={program.timeline}><audio:Item id="beat" source={music-media.media} during="program" playback="once" gain="1"/></audio:Track>
+ <match:Scene id="matching" timeline={program.timeline} canvas={canvas} font={font} during="program" title="US Matrix" sheet0={sheet0} sheet1={sheet1} sheet2={sheet2} sheet3={sheet3} sheet4={sheet4} product1={product1} product2={product2} product3={product3} product4={product4} product5={product5} product6={product6} product7={product7} product8={product8} product9={product9} product10={product10} product11={product11} product12={product12} product13={product13} product14={product14} product15={product15} product16={product16} product17={product17} product18={product18} product19={product19} product20={product20} product21={product21} product22={product22} product23={product23} product24={product24} product25={product25} product26={product26} product27={product27} product28={product28} product29={product29} product30={product30} product31={product31} product32={product32} product33={product33} product34={product34} product35={product35} product36={product36} product37={product37} product38={product38} product39={product39} product40={product40} product41={product41} product42={product42} product43={product43} product44={product44} product45={product45} product46={product46} product47={product47} product48={product48} product49={product49} product50={product50} product51={product51} product52={product52} product53={product53} product54={product54} product55={product55} product56={product56} product57={product57} product58={product58} product59={product59} product60={product60} product61={product61} product62={product62} product63={product63} product64={product64} product65={product65} product66={product66} product67={product67} product68={product68} product69={product69} product70={product70} product71={product71} product72={product72} product73={product73} product74={product74} product75={product75} product76={product76} product77={product77} product78={product78} product79={product79} product80={product80} product81={product81} product82={product82} product83={product83} product84={product84} product85={product85} product86={product86} product87={product87} product88={product88} product89={product89} product90={product90} product91={product91} product92={product92} product93={product93} product94={product94} product95={product95} product97={product97} product98={product98} product99={product99} product100={product100}>
+ <match:Message id="intro" sender="director" side="left" at="0s" text="US MATRIX"/>
+ </match:Scene>
+ <film:Film id="main" canvas={canvas} timeline={program.timeline} appearance={look.film.main}><film:Track source={matching.track}/><film:Track source={soundtrack.audio}/></film:Film>
+ <render:Video id="final" composition={main.composition} timeline={program.timeline}/>
+</svml>

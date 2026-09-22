@@ -19,3 +19,4 @@ jobs:
       - run: npm test
       - run: python3 commerce.py examples/catalog.json --prepare-only --output output/request.json
       - run: python3 render.py prepare examples/storyboard.json --output output/ci
+      - run: python3 productions/hd-fast/export.py --check-assets
