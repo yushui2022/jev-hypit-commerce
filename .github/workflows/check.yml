@@ -16,7 +16,10 @@ jobs:
           python-version: '3.12'
       - run: npm ci
       - run: npm run build
-      - run: npm test
+      - run: pip install -e '.[test]'
+      - run: pytest -q
+      - run: creator-network evaluate
+      - run: node --check apps/workbench/app.js
       - run: python3 commerce.py examples/catalog.json --prepare-only --output output/request.json
       - run: python3 render.py prepare examples/storyboard.json --output output/ci
       - run: python3 productions/hd-fast/export.py --check-assets

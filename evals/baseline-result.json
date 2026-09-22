@@ -1,0 +1,100 @@
+{
+  "fixture": "Small hand-authored lexical regression fixture. Not a production quality benchmark; no training or sales labels.",
+  "queries": 10,
+  "engine": "bm25",
+  "precision_at_1": 1.0,
+  "recall_at_3": 1.0,
+  "mrr": 1.0,
+  "details": [
+    {
+      "query": "botanical facial serum skincare",
+      "ranked": [
+        "beauty"
+      ],
+      "relevant": [
+        "beauty"
+      ]
+    },
+    {
+      "query": "wireless desktop speaker audio",
+      "ranked": [
+        "tech"
+      ],
+      "relevant": [
+        "tech"
+      ]
+    },
+    {
+      "query": "hiking hydration bottle",
+      "ranked": [
+        "active"
+      ],
+      "relevant": [
+        "active"
+      ]
+    },
+    {
+      "query": "kitchen cooking cookware",
+      "ranked": [
+        "home"
+      ],
+      "relevant": [
+        "home"
+      ]
+    },
+    {
+      "query": "fashion striped shoulder bag",
+      "ranked": [
+        "style"
+      ],
+      "relevant": [
+        "style"
+      ]
+    },
+    {
+      "query": "perfume fragrance",
+      "ranked": [
+        "style"
+      ],
+      "relevant": [
+        "style"
+      ]
+    },
+    {
+      "query": "skincare cosmetics makeup",
+      "ranked": [
+        "beauty"
+      ],
+      "relevant": [
+        "beauty"
+      ]
+    },
+    {
+      "query": "wireless audio headphones",
+      "ranked": [
+        "tech"
+      ],
+      "relevant": [
+        "tech"
+      ]
+    },
+    {
+      "query": "outdoor fitness sports",
+      "ranked": [
+        "active"
+      ],
+      "relevant": [
+        "active"
+      ]
+    },
+    {
+      "query": "home cleaning organization",
+      "ranked": [
+        "home"
+      ],
+      "relevant": [
+        "home"
+      ]
+    }
+  ]
+}

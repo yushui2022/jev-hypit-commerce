@@ -1,0 +1,22 @@
+{
+  "description": "Small hand-authored lexical regression fixture. Not a production quality benchmark; no training or sales labels.",
+  "creators": [
+    {"id":"beauty","name":"Skincare creator","description":"serum makeup cosmetics botanical skincare"},
+    {"id":"tech","name":"Desk technology creator","description":"wireless speaker audio gadget headphones"},
+    {"id":"active","name":"Outdoor creator","description":"hydration bottle hiking sports fitness"},
+    {"id":"home","name":"Home kitchen creator","description":"cooking cleaning cookware kitchen organization"},
+    {"id":"style","name":"Style creator","description":"fashion bag fragrance perfume jewelry"}
+  ],
+  "queries": [
+    {"text":"botanical facial serum skincare","relevant":["beauty"]},
+    {"text":"wireless desktop speaker audio","relevant":["tech"]},
+    {"text":"hiking hydration bottle","relevant":["active"]},
+    {"text":"kitchen cooking cookware","relevant":["home"]},
+    {"text":"fashion striped shoulder bag","relevant":["style"]},
+    {"text":"perfume fragrance","relevant":["style"]},
+    {"text":"skincare cosmetics makeup","relevant":["beauty"]},
+    {"text":"wireless audio headphones","relevant":["tech"]},
+    {"text":"outdoor fitness sports","relevant":["active"]},
+    {"text":"home cleaning organization","relevant":["home"]}
+  ]
+}

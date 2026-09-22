@@ -12,3 +12,8 @@ packages/*/dist/
 request.json
 storyboard.json
 !examples/storyboard.json
+.venv/
+data/
+*.egg-info/
+.pytest_cache/
+build/

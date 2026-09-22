@@ -1,0 +1,12 @@
+{
+  "name": "@jev/matrix-ugc",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "hypit": {
+    "activation": "./dist/activation.js"
+  },
+  "exports": {
+    ".": "./dist/render.js"
+  }
+}

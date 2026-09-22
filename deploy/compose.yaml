@@ -1,0 +1,20 @@
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports: ["127.0.0.1:8890:8890"]
+    environment:
+      CREATOR_API_TOKEN: ${CREATOR_API_TOKEN:?Set a workspace API token}
+      JEV_API_KEY: ${JEV_API_KEY:-}
+    volumes: ["creator-data:/data"]
+    # Matching worker can run in-process; this image does not include video tools.
+    command: ["creator-network", "serve", "--host", "0.0.0.0"]
+  qdrant:
+    image: qdrant/qdrant:v1.19.1
+    profiles: ["semantic"]
+    ports: ["127.0.0.1:6333:6333"]
+    volumes: ["qdrant-data:/qdrant/storage"]
+volumes:
+  creator-data:
+  qdrant-data:

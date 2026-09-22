@@ -1,150 +1,137 @@
-# Jev × Hypit Commerce
+<div align="center">
 
-**让商品，匹配 AI 数字达人。**
+# Creator Network
+### 让商品，找到它的数字表达者。
 
-Yeadon 发起的电商数字达人匹配原型。输入商品图片、名称和数字人库，使用 Jev 选择合适的创作者，再由 Hypit 输出商品与人物同步切换的矩阵视频。
+**Jev × Hypit · 开源商品与数字达人匹配工作台**
 
-当前版本已实现完整 CLI 流程，支持 1–200 组配对，不依赖本仓库之外的私有工程。示例使用原创插画及虚构商品，克隆后即可渲染，无需模型密钥。
+[![Check](https://github.com/Yeadon8888/jev-hypit-commerce/actions/workflows/check.yml/badge.svg)](https://github.com/Yeadon8888/jev-hypit-commerce/actions/workflows/check.yml)
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB)
+![Hypit](https://img.shields.io/badge/Hypit-0.2.12-263928)
+[![License: MIT](https://img.shields.io/badge/Code-MIT-D9F285)](LICENSE)
 
-```text
-商品图 + 名称 ─→ 可选 Gemini 识图 ─→ Jev 匹配具体候选 ─→ storyboard.json ─→ Hypit ─→ MP4
-                                      ↑
-                         数字人图片 + 场景 / 风格描述
+[快速开始](#快速开始) · [系统架构](docs/architecture/README.md) · [选型研究](docs/research/retrieval-ranking.md) · [视频工程](productions/matrix-ugc/README.md) · [路线图](ROADMAP.md)
+
+</div>
+
+从一张商品图和商品描述出发，召回合适的数字达人，记录 Jev 的候选决策，经过人工审核，再由 Hypit 输出品牌视频。我们正在构建一个 **AI Agent 原生数字达人网络**；当前开源的是它的匹配与内容交付基础设施。
+
+**v0.4 提供可运行的工作台、REST API、持久化任务、审核记录、可选向量检索及可复现视频工程。** 它是单工作空间的模块化应用，尚未实现多租户、自动经营账号或自主商业合作。
+
+[![30 秒矩阵 → UGC 展示](productions/matrix-ugc/preview.jpg)](https://github.com/Yeadon8888/jev-hypit-commerce/releases/tag/v0.4.0-creator-workbench)
+
+**最新影片：1 秒开场 → 99 组商品 / 人物填入矩阵 → 4 段 UGC → GitHub 片尾。**
+[贯一科技版](productions/matrix-ugc/videos/guanyi-matrix-ugc.mp4) · [Yeadon 版](productions/matrix-ugc/videos/yeadon-matrix-ugc.mp4) · [编辑工程与素材](productions/matrix-ugc/README.md)
+
+## 不止一段展示视频
+
+| 模块 | 当前可运行的能力 |
+|---|---|
+| **Workbench** | 商品 / 达人库、搜索、JSON 导入、候选卡片、人工选择、审核、任务记录、双版本交付 |
+| **Retrieval** | 市场 / 语言 / 启用状态过滤；BM25 基线；可选 FastEmbed + Qdrant 向量召回和 RRF 融合 |
+| **Decision** | Jev `choice` 从候选集合选择一个达人；校验返回 ID 与置信度；失败明确报错 |
+| **Review** | 保留匹配时的商品与候选快照；支持人工改选 / 拒绝；审核通过才能创建视频任务 |
+| **Jobs** | SQLite WAL 持久队列、事务领取、租约心跳、幂等提交、事件记录、显式重试 |
+| **Production** | Hypit 可编辑时间线、素材帧采样、音轨合成、贯一科技 / Yeadon 双水印导出 |
+| **Evaluation** | 小型人工标注检索回归集、Precision@1 / Recall@3 / MRR；不宣称商业转化提升 |
+
+```mermaid
+flowchart LR
+  P[商品图 + 名称] --> A[图像描述 / 品类标签]
+  C[数字达人档案] --> F[市场与语言过滤]
+  A --> R[BM25 / Dense 召回]
+  F --> R
+  R --> M[RRF 融合 · Top K]
+  M --> J[Jev 候选选择]
+  J --> H[人工审核与反馈]
+  H --> Q[持久任务队列]
+  Q --> V[Hypit 编排与渲染]
+  V --> B[贯一科技 / Yeadon]
 ```
 
-![原创插画样例渲染预览](docs/demo-preview.jpg)
+图像理解可通过原有 `analyze.py` 调用 TokensFactory；工作台接受整理好的描述和标签。向量适配器当前嵌入**文字描述**，不把图片路径当成视觉特征。演示人物的专业方向来自编辑设定，不能从人脸推断。
 
-## 进阶版：AI Agent 原生数字达人网络
+## 快速开始
 
-[![进阶版主片](productions/advanced/preview.jpg)](productions/advanced/videos/advanced-guanyi.mp4)
-
-- [观看 42 秒主片](productions/advanced/videos/advanced-guanyi.mp4)：中文主题与 Jev / Hypit 机制说明、高清商品配对、UGC、空间矩阵和 GitHub 片尾。
-- [完整 Hypit 工程与 4 条独立 UGC](productions/advanced/README.md)：香水、桌面音箱支架、随行杯、条纹包，包含生成提示词与任务信息。
-- 完成环境安装后运行 `npm run video:advanced` 重现成片，不需要模型密钥。配乐为本项目原创 132 BPM 电子编排。
-
-## 高清快闪版与 Hypit 工程
-
-已公开当前 **26 秒高清商品快闪版**，包含全部编辑工程、99 张高清商品图、人物图集、音轨、配对数据和两种品牌成片：
-
-- [贯一科技版 MP4](productions/hd-fast/videos/guanyi-hd.mp4)
-- [Yeadon 版 MP4](productions/hd-fast/videos/yeadon-hd.mp4)
-- [完整工程与重新导出说明](productions/hd-fast/README.md)
-- [进阶版创意方案与实现记录](productions/hd-fast/NEXT-VERSION.md)
-
-[![贯一科技高清版](productions/hd-fast/preview.jpg)](productions/hd-fast/videos/guanyi-hd.mp4)
-
-安装环境后运行 `npm run video:hd` 即可重新导出。生产媒体的来源和使用范围见 [媒体说明](productions/hd-fast/MEDIA-NOTICE.md)，与下方 MIT 原创插画示例分开说明。
-
-## 三步跑通无密钥演示
-
-需要 **Node.js 22+、Python 3.10+、FFmpeg / FFprobe、Chrome 或 Chromium**。已在 macOS 验证；Linux 可通过 `CHROME_PATH` 指定浏览器。Windows 尚未验证。
+Python 3.11+。先运行匹配工作台，无需 Node、浏览器渲染环境或模型密钥：
 
 ```sh
 git clone https://github.com/Yeadon8888/jev-hypit-commerce.git
 cd jev-hypit-commerce
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e '.[test]'
+creator-network seed
+creator-network serve
+```
+
+打开 **http://127.0.0.1:8890**。默认导入 3 件原创虚构商品及 3 位插画达人；选择商品 → 开始匹配 → 审核。选择 `BM25` 可完全本地运行。希望查看影片中的高清数据时：
+
+```sh
+creator-network seed --showcase
+```
+
+展示集增加 99 件商品和 100 个合成人物档案；重复导入更新同 ID，不清空现有库。展示图的权利范围见 [媒体说明](productions/hd-fast/MEDIA-NOTICE.md)。同类人物的不同内容风格是编辑设定，不代表经过验证的人格或表现。
+
+### 启用 Jev
+
+在启动服务的终端设置 `JEV_API_KEY`（建议使用密钥管理器或无回显输入），重启服务即可在界面选择 Jev。密钥只保留在服务进程环境，不写入任务、前端或 Git。
+
+Jev 负责候选中的 **单个最优选择**；它不是这里的向量库，也不是快速排序算法。其余候选保留召回顺序，BM25 / RRF 分数与 Jev 置信度分别展示。无密钥或调用失败时，不伪装成 Jev 结果。
+
+### 启用混合检索
+
+```sh
+pip install -e '.[semantic]'
+CREATOR_RETRIEVAL=hybrid creator-network serve
+```
+
+首次使用会下载 `BAAI/bge-small-en-v1.5` 模型。默认使用本地 Qdrant 存储；多个进程需使用外部 Qdrant，并通过 `QDRANT_URL` 指定。默认 BGE small 英文模型适合本示例的美国市场英文描述；中文语义检索需另行评估模型。
+
+### 审核后导出视频
+
+另需 Node.js 22+、FFmpeg / FFprobe、Chrome 或 Chromium：
+
+```sh
 npm ci
 npm run setup
-npm run demo
-```
-
-结果在 `output/demo/video.mp4`：15 秒、1280×720、30fps。开头一秒说明，中段商品与人物同步闪切，片尾展示仓库地址。默认无音轨，不包含参考视频配乐。
-
-`setup` 会配置本地 Hypit 运行环境、安装 Inter 和思源黑体字体包并启动渲染服务。找不到浏览器时先设置：
-
-```sh
-export CHROME_PATH="/path/to/chrome"
-```
-
-**离线样例的配对是手工 fixture，不伪装成 AI 判断。** 示例中三个不同候选保证可观察配对切换；自己的输入可以包含更多人物和商品。
-
-## 使用自己的商品和形象库
-
-参考 `examples/catalog.json`：
-
-```json
-{
-  "products": [{
-    "id": "serum-01",
-    "name": "植物精华",
-    "image": "assets/serum.jpg",
-    "visual_features": "绿色瓶身、米色标签，护肤品类"
-  }],
-  "avatars": [{
-    "id": "creator-01",
-    "image": "assets/creator.jpg",
-    "description": "虚构成年创作者，米色上衣，绿色植物与护肤工作台背景"
-  }]
-}
-```
-
-图片路径相对于输入 JSON 所在目录。图片、商品名、场景描述保留在最终配对结果中。Jev 本身接收文本视觉特征；它不直接接收图片。模型返回的 confidence 不是准确率保证。
-
-### 1. 可选：自动识图
-
-已有 `visual_features` 可跳过。缺少时，把 TokensFactory 密钥放在环境变量 `TOKENSFACTORY_API_KEY`，然后：
-
-```sh
-python3 analyze.py input/catalog.json --output output/analyzed.json
-```
-
-使用 `gemini-3.8-flash`，支持本地 PNG、JPEG、WebP。会把商品图片发送到指定服务。人物图的生成不在本版本范围，数字人库由使用者提供。
-
-### 2. 真实 Jev 匹配
-
-在环境中设置 `JEV_API_KEY`，然后：
-
-```sh
-python3 commerce.py output/analyzed.json --output output/storyboard.json
-# 若直接使用含 visual_features 的目录：
-python3 commerce.py input/catalog.json --output output/storyboard.json
-```
-
-每件商品从给定人物候选中选一个，依据商品类别、可见风格与背景场景。允许多个商品匹配同一个候选，不强制一对一分配；不以面部推断国籍、性格或商业成效。
-
-只想检查请求而不调用接口：
-
-```sh
-python3 commerce.py examples/catalog.json --prepare-only --output output/request.json
-```
-
-### 3. 导出视频
-
-```sh
-python3 render.py build output/storyboard.json --output output/my-video
-```
-
-结果：`output/my-video/video.mp4`。生成的 `main.svml`、`main.svs` 和 `main.svrun` 可继续编辑，或用 Hypit Studio 打开：
-
-```sh
-npx hypit studio --run output/my-video/main.svrun
-```
-
-## 项目结构
-
-| 文件 | 职责 |
-| --- | --- |
-| `analyze.py` | 可选图片识别，生成商品视觉特征 |
-| `commerce.py` | Jev 请求、校验和配对数据 |
-| `render.py` | 整理素材、生成 Hypit 工程、渲染与导出 |
-| `packages/commerce-scene` | 可接收任意配对数量的 Hypit 组件 |
-| `examples` | 可分发的原创插画、虚构商品与离线配对 |
-| `tests` | 输入、缺失素材、配对和接口边界测试 |
-
-## 验证
-
-```sh
-npm test
 npm run build
 ```
 
-CI 执行类型检查、单元测试及演示工程生成，不调用收费接口。完整本地渲染由 `npm run demo` 验证。
+回到工作台，审核后点击「生成双水印视频」。任务完成后在「视频交付」下载两个版本。此流程生成审核配对的 **15 秒展示视频**；不会自动提交新的付费 UGC 生成任务。归档的 30 秒主片使用已有 UGC 素材：
 
-## 边界与方向
+```sh
+npm run video:matrix
+```
 
-当前是可运行的本地原型。核心匹配演示使用静态形象卡；进阶影片另外接入 TokensFactory 生成的带口播 UGC，归档了四条生成片段。没有账号登录、自动发帖、聊天、人格记忆或自动商业合作。未来围绕独立角色档案、持续故事、人工调整、效果评估和多 Agent 协作扩展。
+完整操作、配置、API 示例与容器说明见 [运行手册](docs/guides/operations.md)。原有批量 CLI 保留，见 [CLI 指南](docs/guides/legacy-cli.md)。
 
-图像识别和 Jev 调用可能产生服务费用，服务故障会明确报错，不用模拟结果替代。代码不保存密钥；`input/`、`output/` 和本地运行配置默认不进入 Git。更大批次需按业务成本与服务限制拆分。
+## 工程结构
 
-## License
+```text
+apps/workbench/            中文交互工作台
+src/creator_network/      API、召回、Jev、审核、任务、渲染适配器
+packages/                 可复用 Hypit 场景组件
+productions/matrix-ugc/    当前 30 秒双水印主片与工程
+productions/advanced/      4 条 UGC、提示词、原始生成记录
+productions/hd-fast/       高清商品、数字人图集、原矩阵工程
+examples/                 原创插画及虚构商品，无密钥样例
+evals/                    小型检索回归集及结果
+tests/                    API / 状态机 / 供应商契约 / 渲染准备测试
+deploy/                   容器与可选 Qdrant 部署
+docs/                     架构、研究、使用与验证记录
+```
 
-代码及 `examples/` 原创示例素材：MIT，© 2026 Yeadon。`productions/` 中的生产媒体不包含在 MIT 素材授权内，见各工程的媒体说明。Jev、Hypit 及模型服务分别遵循其自身条款。项目非官方出品。
+## 验证与演进
+
+```sh
+pytest -q
+creator-network evaluate
+npm ci && npm run build
+```
+
+[验证记录](docs/VALIDATION.md) 区分本地真实调用、模拟契约测试和仍未验证的环境。小型回归集上的高分不能代表真实商品匹配质量；商用前需要自己的人工相关性标注、拒绝样本和线上反馈评估。
+
+参考了 [Qdrant](https://github.com/qdrant/qdrant)、[FastEmbed](https://github.com/qdrant/fastembed)、[Gorse](https://github.com/gorse-io/gorse) 的召回与服务分层思路；实际依赖及未采用部分见 [选型记录](docs/research/retrieval-ranking.md)。这些项目没有为本项目背书。
+
+代码和原创插画采用 [MIT](LICENSE)。商品图、生成媒体和第三方模型各自适用其权利及许可条件，见各 production 的媒体说明。欢迎按 [贡献指南](CONTRIBUTING.md) 提交改进。
