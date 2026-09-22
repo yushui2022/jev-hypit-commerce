@@ -20,7 +20,7 @@
 
 [![原音乐、原节奏 + UGC](productions/original-ugc/preview.jpg)](productions/original-ugc/videos/guanyi-original-ugc.mp4)
 
-**当前主版本：26 秒原音乐复刻节奏 + UGC。** 保留商品与人物逐格填入，在填满后的原切点插入三栏 UGC，然后回到原矩阵扩张和 GitHub 片尾。
+**当前主版本：26 秒原音乐复刻节奏 + UGC。** 保留商品与人物逐格填入，填满后用 5.3 秒展示三栏 UGC，再用 3.1 秒完成矩阵扩张，最后进入 GitHub 片尾。
 [贯一科技版](productions/original-ugc/videos/guanyi-original-ugc.mp4) · [Yeadon 版](productions/original-ugc/videos/yeadon-original-ugc.mp4) · [Hypit 工程](productions/original-ugc/README.md)
 
 [无 UGC 的原版](productions/hd-fast/README.md) 与 [30 秒试验版](productions/matrix-ugc/README.md) 保留归档。
