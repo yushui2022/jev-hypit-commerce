@@ -10,7 +10,7 @@
 ![Hypit](https://img.shields.io/badge/Hypit-0.2.12-263928)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-D9F285)](LICENSE)
 
-[快速开始](#快速开始) · [系统架构](docs/architecture/README.md) · [选型研究](docs/research/retrieval-ranking.md) · [视频工程](productions/matrix-ugc/README.md) · [路线图](ROADMAP.md)
+[快速开始](#快速开始) · [系统架构](docs/architecture/README.md) · [选型研究](docs/research/retrieval-ranking.md) · [视频工程](productions/hd-fast/README.md) · [路线图](ROADMAP.md)
 
 </div>
 
@@ -18,10 +18,12 @@
 
 **v0.4 提供可运行的工作台、REST API、持久化任务、审核记录、可选向量检索及可复现视频工程。** 它是单工作空间的模块化应用，尚未实现多租户、自动经营账号或自主商业合作。
 
-[![30 秒矩阵 → UGC 展示](productions/matrix-ugc/preview.jpg)](https://github.com/Yeadon8888/jev-hypit-commerce/releases/tag/v0.4.0-creator-workbench)
+[![26 秒原音乐高清复刻版](productions/hd-fast/preview.jpg)](productions/hd-fast/videos/guanyi-hd.mp4)
 
-**最新影片：1 秒开场 → 99 组商品 / 人物填入矩阵 → 4 段 UGC → GitHub 片尾。**
-[贯一科技版](productions/matrix-ugc/videos/guanyi-matrix-ugc.mp4) · [Yeadon 版](productions/matrix-ugc/videos/yeadon-matrix-ugc.mp4) · [编辑工程与素材](productions/matrix-ugc/README.md)
+**当前主版本：26 秒高清复刻版。保留原参考音乐、逐格填入与随鼓点扩张的矩阵节奏，开头只留一句话。**
+[贯一科技版](productions/hd-fast/videos/guanyi-hd.mp4) · [Yeadon 版](productions/hd-fast/videos/yeadon-hd.mp4) · [双版本预览页](productions/hd-fast/index.html) · [Hypit 工程](productions/hd-fast/README.md)
+
+后续以此版本做小幅调整。此前的 [30 秒矩阵 + UGC 试验版](productions/matrix-ugc/README.md) 保留归档；工作台与匹配架构继续保留。
 
 ## 不止一段展示视频
 
@@ -98,10 +100,10 @@ npm run setup
 npm run build
 ```
 
-回到工作台，审核后点击「生成双水印视频」。任务完成后在「视频交付」下载两个版本。此流程生成审核配对的 **15 秒展示视频**；不会自动提交新的付费 UGC 生成任务。归档的 30 秒主片使用已有 UGC 素材：
+回到工作台，审核后点击「生成双水印视频」。任务完成后在「视频交付」下载两个版本。此流程生成审核配对的 **15 秒展示视频**；不会自动提交新的付费 UGC 生成任务。当前主片恢复原来的音乐和剪辑节奏：
 
 ```sh
-npm run video:matrix
+npm run video:hd
 ```
 
 完整操作、配置、API 示例与容器说明见 [运行手册](docs/guides/operations.md)。原有批量 CLI 保留，见 [CLI 指南](docs/guides/legacy-cli.md)。
@@ -112,9 +114,9 @@ npm run video:matrix
 apps/workbench/            中文交互工作台
 src/creator_network/      API、召回、Jev、审核、任务、渲染适配器
 packages/                 可复用 Hypit 场景组件
-productions/matrix-ugc/    当前 30 秒双水印主片与工程
+productions/matrix-ugc/    30 秒矩阵 + UGC 试验归档
 productions/advanced/      4 条 UGC、提示词、原始生成记录
-productions/hd-fast/       高清商品、数字人图集、原矩阵工程
+productions/hd-fast/       当前 26 秒主片、高清商品、图集与原矩阵工程
 examples/                 原创插画及虚构商品，无密钥样例
 evals/                    小型检索回归集及结果
 tests/                    API / 状态机 / 供应商契约 / 渲染准备测试
