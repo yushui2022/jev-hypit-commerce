@@ -1,0 +1,20 @@
+{
+  "name": "jev-hypit-commerce",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Product-to-creator matching with Jev and reproducible Hypit videos",
+  "scripts": {
+    "build": "tsc -p packages/commerce-scene/tsconfig.json",
+    "test": "python3 -m unittest discover -s tests",
+    "setup": "python3 render.py setup",
+    "demo": "python3 render.py demo"
+  },
+  "dependencies": {
+    "@hypit/hypit": "0.2.12",
+    "@yeadon/commerce-scene": "file:packages/commerce-scene"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

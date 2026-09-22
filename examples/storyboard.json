@@ -1,0 +1,51 @@
+{
+  "schema": "jev-hypit-commerce/storyboard@1",
+  "pairs": [
+    {
+      "product": {
+        "id": "serum",
+        "name": "Demo botanical serum",
+        "image": "assets/serum.png",
+        "visual_features": "Sage green bottle with ivory label; skincare packaging."
+      },
+      "avatar": {
+        "id": "beauty",
+        "image": "assets/beauty.png",
+        "description": "Illustrated fictional creator in a green skincare studio; calm botanical palette."
+      },
+      "confidence": null
+    },
+    {
+      "product": {
+        "id": "speaker",
+        "name": "Demo desktop speaker",
+        "image": "assets/speaker.png",
+        "visual_features": "Dark violet rectangular device; desk and technology category."
+      },
+      "avatar": {
+        "id": "tech",
+        "image": "assets/tech.png",
+        "description": "Illustrated fictional creator with dark outfit and blue office background; technology category."
+      },
+      "confidence": null
+    },
+    {
+      "product": {
+        "id": "bottle",
+        "name": "Demo outdoor bottle",
+        "image": "assets/bottle.png",
+        "visual_features": "Warm coral bottle; hydration and outdoor category."
+      },
+      "avatar": {
+        "id": "active",
+        "image": "assets/active.png",
+        "description": "Illustrated fictional creator in warm sports palette; outdoor and hydration category."
+      },
+      "confidence": null
+    }
+  ],
+  "provenance": {
+    "matching": "Hand-authored offline fixture; NOT an AI result",
+    "rendered": false
+  }
+}

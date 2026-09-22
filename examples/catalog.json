@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": "serum",
+      "name": "Demo botanical serum",
+      "image": "assets/serum.png",
+      "visual_features": "Sage green bottle with ivory label; skincare packaging."
+    },
+    {
+      "id": "speaker",
+      "name": "Demo desktop speaker",
+      "image": "assets/speaker.png",
+      "visual_features": "Dark violet rectangular device; desk and technology category."
+    },
+    {
+      "id": "bottle",
+      "name": "Demo outdoor bottle",
+      "image": "assets/bottle.png",
+      "visual_features": "Warm coral bottle; hydration and outdoor category."
+    }
+  ],
+  "avatars": [
+    {
+      "id": "beauty",
+      "image": "assets/beauty.png",
+      "description": "Illustrated fictional creator in a green skincare studio; calm botanical palette."
+    },
+    {
+      "id": "tech",
+      "image": "assets/tech.png",
+      "description": "Illustrated fictional creator with dark outfit and blue office background; technology category."
+    },
+    {
+      "id": "active",
+      "image": "assets/active.png",
+      "description": "Illustrated fictional creator in warm sports palette; outdoor and hydration category."
+    }
+  ]
+}

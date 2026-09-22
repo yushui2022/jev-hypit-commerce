@@ -1,0 +1,14 @@
+node_modules/
+.hypit/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+output/
+input/
+hypit.runtime.json
+packages/*/dist/
+request.json
+storyboard.json
+!examples/storyboard.json
