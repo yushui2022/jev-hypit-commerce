@@ -1,0 +1,29 @@
+{
+  "model": "veo-omni-flash",
+  "task_id": "task_p2K5IZul9DbNBWRXQ9bNkihy67fMQ8aZ",
+  "result_url": "https://tokensfactory.cc/v1/videos/task_p2K5IZul9DbNBWRXQ9bNkihy67fMQ8aZ/content",
+  "product_index": 46,
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "codec_type": "audio"
+      }
+    ],
+    "format": {
+      "duration": "10.005000"
+    }
+  },
+  "postprocess": {
+    "trim_end_seconds": 6.5,
+    "audio_fade_out_seconds": 0.15,
+    "reason": "Remove repeated closing phrase from initial generated clip; two reruns failed during upstream reference download."
+  },
+  "archived_original": "../sources/tumbler.mp4"
+}

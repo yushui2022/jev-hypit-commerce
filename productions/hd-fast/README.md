@@ -46,7 +46,7 @@ Studio 展示叠加品牌署名前的完整基础时间线。署名位置和尺�
 | `assets/soundtrack.wav` | 当前成片使用的参考音轨 |
 | `videos` | 已导出的两份 MP4 |
 | `assets-manifest.json` | 107 个媒体文件的 SHA-256 校验 |
-| `NEXT-VERSION.md` | 下一版创意方案，尚未制作 |
+| `NEXT-VERSION.md` | 进阶版创意方案与实现记录 |
 
 校验原始发布素材：`python3 productions/hd-fast/export.py --check-assets`。主动替换素材后无需保持原始哈希。
 

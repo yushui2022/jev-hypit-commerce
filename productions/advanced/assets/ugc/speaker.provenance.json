@@ -1,0 +1,23 @@
+{
+  "model": "veo-omni-flash",
+  "task_id": "task_2vKA4AfSO8LpaaKDBrgL7KWod9eNm6Yb",
+  "result_url": "https://tokensfactory.cc/v1/videos/task_2vKA4AfSO8LpaaKDBrgL7KWod9eNm6Yb/content",
+  "product_index": 39,
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "codec_type": "audio"
+      }
+    ],
+    "format": {
+      "duration": "10.005000"
+    }
+  }
+}

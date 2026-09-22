@@ -14,14 +14,22 @@ Yeadon 发起的电商数字达人匹配原型。输入商品图片、名称和�
 
 ![原创插画样例渲染预览](docs/demo-preview.jpg)
 
-## 完整影片与 Hypit 工程
+## 进阶版：AI Agent 原生数字达人网络
+
+[![进阶版主片](productions/advanced/preview.jpg)](productions/advanced/videos/advanced-guanyi.mp4)
+
+- [观看 42 秒主片](productions/advanced/videos/advanced-guanyi.mp4)：中文主题与 Jev / Hypit 机制说明、高清商品配对、UGC、空间矩阵和 GitHub 片尾。
+- [完整 Hypit 工程与 4 条独立 UGC](productions/advanced/README.md)：香水、桌面音箱支架、随行杯、条纹包，包含生成提示词与任务信息。
+- 完成环境安装后运行 `npm run video:advanced` 重现成片，不需要模型密钥。配乐为本项目原创 132 BPM 电子编排。
+
+## 高清快闪版与 Hypit 工程
 
 已公开当前 **26 秒高清商品快闪版**，包含全部编辑工程、99 张高清商品图、人物图集、音轨、配对数据和两种品牌成片：
 
 - [贯一科技版 MP4](productions/hd-fast/videos/guanyi-hd.mp4)
 - [Yeadon 版 MP4](productions/hd-fast/videos/yeadon-hd.mp4)
 - [完整工程与重新导出说明](productions/hd-fast/README.md)
-- [下一版创意方案（尚未制作）](productions/hd-fast/NEXT-VERSION.md)
+- [进阶版创意方案与实现记录](productions/hd-fast/NEXT-VERSION.md)
 
 [![贯一科技高清版](productions/hd-fast/preview.jpg)](productions/hd-fast/videos/guanyi-hd.mp4)
 
@@ -133,7 +141,7 @@ CI 执行类型检查、单元测试及演示工程生成，不调用收费接�
 
 ## 边界与方向
 
-当前是可运行的本地原型：静态形象卡动效，不是口型视频；没有账号登录、自动发帖、聊天、人格记忆或自动商业合作。未来围绕独立角色档案、持续故事、人工调整、效果评估和多 Agent 协作扩展。
+当前是可运行的本地原型。核心匹配演示使用静态形象卡；进阶影片另外接入 TokensFactory 生成的带口播 UGC，归档了四条生成片段。没有账号登录、自动发帖、聊天、人格记忆或自动商业合作。未来围绕独立角色档案、持续故事、人工调整、效果评估和多 Agent 协作扩展。
 
 图像识别和 Jev 调用可能产生服务费用，服务故障会明确报错，不用模拟结果替代。代码不保存密钥；`input/`、`output/` 和本地运行配置默认不进入 Git。更大批次需按业务成本与服务限制拆分。
 

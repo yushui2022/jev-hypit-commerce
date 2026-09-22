@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import uuid
 
 PRODUCTION = Path(__file__).resolve().parent
 ROOT = PRODUCTION.parents[1]
@@ -47,7 +48,9 @@ def main():
     if not ids:
         raise RuntimeError('Hypit did not return a build ID.')
     base = output / 'base.mp4'
-    run('node', CLI, 'get', ids[-1], '--output', 'final.video', '--to', base)
+    temp = output / ('export-' + uuid.uuid4().hex + '.mp4')
+    run('node', CLI, 'get', ids[-1], '--output', 'final.video', '--to', temp)
+    temp.replace(base)
     for brand, width, bottom in [('guanyi', 170, 30), ('yeadon', 145, 25)]:
         run('ffmpeg', '-y', '-i', base, '-i', PRODUCTION / f'assets/branding/{brand}.png',
             '-filter_complex', f'[1:v]scale={width}:-1[logo];[0:v][logo]overlay=W-w-35:H-h-{bottom}[v]',

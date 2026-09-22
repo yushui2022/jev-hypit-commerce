@@ -1,0 +1,10 @@
+{
+  "model": "veo-omni-flash",
+  "prompt": "Create a 10 second vertical 9:16 American English TikTok UGC product showcase. Image 1 is the exact fictional adult creator identity; preserve facial identity, hair and natural appearance. Image 2 is the exact product; preserve its color, shape, proportions and recognizable packaging. A bright lived-in kitchen. The creator lifts the exact handled tumbler from the counter, shows the lid and straw without removing parts, turns their head slightly toward camera, and takes a small casual sip. Shoot on a smartphone at eye level with natural daylight, subtle handheld movement, realistic skin and hands. Begin with direct eye contact and a small natural head turn. Use two or three motivated jump cuts between medium shot and product close-up. Friendly conversational American English delivery, exact dialogue: \"A quick look at my grab-and-go setup. Handle, straw, and room for ice. Which color would you choose?\" Clean synchronized spoken audio and quiet room tone; no music. No subtitles, overlays or new logos. Retain the product's real printed label where visible. No exaggerated performance or fabricated efficacy claims. Show one creator and one product only.",
+  "duration": 10,
+  "aspect_ratio": "9:16",
+  "Ingredients_images": [
+    "https://raw.githubusercontent.com/Yeadon8888/jev-hypit-commerce/main/productions/advanced/assets/references/creator-046.png",
+    "https://raw.githubusercontent.com/Yeadon8888/jev-hypit-commerce/main/productions/hd-fast/assets/products/046.webp"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "model": "veo-omni-flash",
+  "prompt": "Create a 10 second vertical 9:16 American English TikTok UGC product showcase. Image 1 is the exact fictional adult creator identity; preserve facial identity, hair and natural appearance. Image 2 is the exact product; preserve its color, shape, proportions and recognizable packaging. A real home desk with a laptop and plant. The creator holds the exact black speaker phone stand, places a phone on it, turns slightly to check the screen, then looks back with a natural smile. Keep the speaker and stand geometry consistent. Shoot on a smartphone at eye level with natural daylight, subtle handheld movement, realistic skin and hands. Begin with direct eye contact and a small natural head turn. Use two or three motivated jump cuts between medium shot and product close-up. Friendly conversational American English delivery, exact dialogue: \"Here is a simple desk setup idea. Phone up here, speaker underneath. Take a closer look at this little stand.\" Clean synchronized spoken audio and quiet room tone; no music. No subtitles, overlays or new logos. Retain the product's real printed label where visible. No exaggerated performance or fabricated efficacy claims. Show one creator and one product only.",
+  "duration": 10,
+  "aspect_ratio": "9:16",
+  "Ingredients_images": [
+    "https://raw.githubusercontent.com/Yeadon8888/jev-hypit-commerce/main/productions/advanced/assets/references/creator-039.png",
+    "https://raw.githubusercontent.com/Yeadon8888/jev-hypit-commerce/main/productions/hd-fast/assets/products/039.webp"
+  ]
+}

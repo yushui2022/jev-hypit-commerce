@@ -1,0 +1,92 @@
+[
+  {
+    "path": "assets/original-score.wav",
+    "bytes": 8064044,
+    "sha256": "249f3f363019f4a8651ec8c3e599917683a9fb5f89f1f6124667a95d3d36c0b9"
+  },
+  {
+    "path": "assets/references/creator-003.png",
+    "bytes": 342110,
+    "sha256": "a28aa3e3a2be9c298729916038c23ab72dab3fe084a86abd37ca589fc3735e39"
+  },
+  {
+    "path": "assets/references/creator-039.png",
+    "bytes": 401230,
+    "sha256": "8d1e9a58cc1dd856aa0957d8088f535cb82d382fbfb85b3a193626de14a9d634"
+  },
+  {
+    "path": "assets/references/creator-046.png",
+    "bytes": 471833,
+    "sha256": "7d7803917954b352741d32efc7cfc4a7e8468e5ddc79dcf8756b56be4bb18965"
+  },
+  {
+    "path": "assets/references/creator-082.png",
+    "bytes": 338834,
+    "sha256": "d82590405b6197263e32e45aeb32f7cd0343300b575e2a509cdb5a52f3c2e42e"
+  },
+  {
+    "path": "assets/sources/tumbler.mp4",
+    "bytes": 3737012,
+    "sha256": "d1c05575f1de1a770e5a0c80723d88d9a8dad6a996a1084835c9f01ff13959fa"
+  },
+  {
+    "path": "assets/ugc/bag.jpg",
+    "bytes": 42096,
+    "sha256": "956b310e423c8d9f700ba6a02514844018129ab0e0848805bec94e73b8086415"
+  },
+  {
+    "path": "assets/ugc/bag.mp4",
+    "bytes": 4034100,
+    "sha256": "82bdcad4bfcd9efdb730e10e1768419748532a01648e3c6e4de574a0c04d7ac7"
+  },
+  {
+    "path": "assets/ugc/bag.provenance.json",
+    "bytes": 486,
+    "sha256": "99c3c95136d4ed8110320d37f0c9c93c4bab1fbcc2629eb6ea1569d3c485889a"
+  },
+  {
+    "path": "assets/ugc/perfume.jpg",
+    "bytes": 39009,
+    "sha256": "71de75ad2a747c992926f49765c30508a21c48bface5bac49f9100720ce0c639"
+  },
+  {
+    "path": "assets/ugc/perfume.mp4",
+    "bytes": 3196350,
+    "sha256": "6efa5b49a4a6d49ce62c75c5b6fbc11bd46e27b16890fb418056757619e119af"
+  },
+  {
+    "path": "assets/ugc/perfume.provenance.json",
+    "bytes": 485,
+    "sha256": "70ca54c39299e221904b5272feb1607681276f7579e29de1c2c7240155fa6860"
+  },
+  {
+    "path": "assets/ugc/speaker.jpg",
+    "bytes": 47439,
+    "sha256": "865a61a83a283f2a1a0db5351efbc9a5410b9227d64f6b1607e7a0332b6111b3"
+  },
+  {
+    "path": "assets/ugc/speaker.mp4",
+    "bytes": 2913855,
+    "sha256": "026bef39e74377831efd0c0663b9da40c52b2d7d4369fff86deb85b8bd656541"
+  },
+  {
+    "path": "assets/ugc/speaker.provenance.json",
+    "bytes": 486,
+    "sha256": "2a45159b93be25be8cc15d7d7e0398c71999545cce44013fa94bc8a40e267be6"
+  },
+  {
+    "path": "assets/ugc/tumbler.jpg",
+    "bytes": 58835,
+    "sha256": "5faed4e24cb977336f3b1149e1ba6d3a3e67cfdf2c21bf5b928dfce5a3180426"
+  },
+  {
+    "path": "assets/ugc/tumbler.mp4",
+    "bytes": 2558612,
+    "sha256": "6194b502c2a96a508ebe29941ddb997991a1508f56705f9705e7a7851db8982d"
+  },
+  {
+    "path": "assets/ugc/tumbler.provenance.json",
+    "bytes": 754,
+    "sha256": "a93a2e9abf599bbd16b04e65f46fee5d853894bbc81e25f6190a23e8d1c5a6e3"
+  }
+]
