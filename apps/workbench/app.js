@@ -1,5 +1,5 @@
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-let token='', products=[], creators=[], jobs=[], currentJob=null, selected=null, polling=null;
+let token='', products=[], creators=[], jobs=[], currentJob=null, selected=null, polling=null, jobFilter='all';
 const el=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n};
 const VIEWS=['match','catalog','jobs','films'];
 
@@ -148,26 +148,75 @@ $('#render').onclick=async()=>{
   }catch(e){notify(e.message,'error');}
 };
 
+const STATUS_LABEL={completed:'已完成',failed:'失败',queued:'排队中',running:'进行中'};
+const KIND_LABEL={match:'匹配',render:'视频'};
+const isActive=j=>['queued','running'].includes(j.status);
+
+function renderJobSummary(){
+  const stats=[['全部任务',jobs.length],['已完成',jobs.filter(j=>j.status==='completed').length],['失败',jobs.filter(j=>j.status==='failed').length],['进行中',jobs.filter(isActive).length]];
+  $('#jobs-summary').replaceChildren(...stats.map(([label,n])=>{
+    const c=el('div','job-stat');
+    c.append(el('strong','',String(n)),el('span','',label));
+    return c;
+  }));
+}
+
+function renderJobFilters(){
+  const defs=[['all','全部'],['active','进行中'],['completed','已完成'],['failed','失败']];
+  const count=k=>k==='all'?jobs.length:k==='active'?jobs.filter(isActive).length:jobs.filter(j=>j.status===k).length;
+  $('#jobs-filters').replaceChildren(...defs.map(([k,label])=>{
+    const b=el('button','filter-chip'+(jobFilter===k?' active':''),label+' '+count(k));
+    b.onclick=()=>{jobFilter=k;renderJobFilters();renderJobRows();};
+    return b;
+  }));
+}
+
+function renderJobRows(){
+  const visible=jobs.filter(j=>jobFilter==='all'||(jobFilter==='active'?isActive(j):j.status===jobFilter));
+  $('#jobs-list').replaceChildren(...visible.map(j=>{
+    const item=el('div','job-item');
+    const n=el('div','job-row'+(j.status==='failed'?' is-failed':''));
+    n.append(el('span','badge '+j.status,STATUS_LABEL[j.status]||j.status));
+    n.append(el('span','kind-chip',KIND_LABEL[j.kind]||j.kind));
+    const main=el('div','job-main');
+    main.append(el('strong','',j.kind==='match'?'达人匹配 · '+j.payload.product_id:'双水印视频'));
+    if(j.status==='failed'&&j.error)main.append(el('div','job-error',j.error));
+    n.append(main);
+    const meta=el('div','job-meta');
+    meta.append(el('time','',new Date(j.created*1000).toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})),el('code','',j.id.slice(0,12)));
+    n.append(meta);
+    const actions=el('div','job-actions');
+    if(j.kind==='match'&&j.status==='completed'){const b=el('button','','查看审核');b.onclick=()=>{displayMatch(j);view('match')};actions.append(b);}
+    if(j.status==='failed'){const b=el('button','','重试');b.onclick=async()=>{try{await api('/jobs/'+j.id+'/retry',{method:'POST'});loadJobs();}catch(e){notify(e.message,'error')}};actions.append(b);}
+    const detail=el('div','job-detail');detail.hidden=true;
+    const log=el('button','','详情');
+    log.onclick=async()=>{
+      if(detail.hidden){
+        detail.hidden=false;log.textContent='收起';
+        if(!detail.childElementCount){
+          detail.textContent='加载中…';
+          try{detail.textContent=JSON.stringify(await api('/jobs/'+j.id+'/events'),null,2);}catch(e){detail.textContent=e.message;}
+        }
+      }else{detail.hidden=true;log.textContent='详情';}
+    };
+    actions.append(log);
+    n.append(actions);
+    item.append(n,detail);
+    return item;
+  }));
+  if(!visible.length){
+    const e=el('div','empty-jobs');
+    e.append(el('strong','',jobs.length?'当前筛选下没有任务':'尚无任务记录'),el('p','muted',jobs.length?'切换上方筛选查看其他状态的任务。':'在匹配工作台选择商品并提交匹配，任务记录会显示在这里。'));
+    $('#jobs-list').append(e);
+  }
+}
+
 async function loadJobs(){
   try{
     jobs=(await api('/jobs')).jobs;
-    $('#jobs-list').replaceChildren(...jobs.map(j=>{
-      const n=el('div','job-row');
-      n.append(el('span','badge '+j.status,j.status),el('div','',j.kind==='match'?'达人匹配 · '+j.payload.product_id:'双水印视频'),el('code','',j.id.slice(0,12)),el('time','',new Date(j.created*1000).toLocaleTimeString()));
-      const actions=el('div');
-      if(j.kind==='match'&&j.status==='completed'){const b=el('button','','查看审核');b.onclick=()=>{displayMatch(j);view('match')};actions.append(b);}
-      if(j.status==='failed'){const b=el('button','','重试');b.onclick=async()=>{try{await api('/jobs/'+j.id+'/retry',{method:'POST'});loadJobs();}catch(e){notify(e.message,'error')}};actions.append(b);}
-      const log=el('button','','记录');
-      log.onclick=async()=>{try{$('#job-events').hidden=false;$('#job-events').textContent=JSON.stringify(await api('/jobs/'+j.id+'/events'),null,2)}catch(e){notify(e.message,'error')}};
-      actions.append(log);
-      n.append(actions);
-      return n;
-    }));
-    if(!jobs.length){
-      const e=el('div','empty-jobs');
-      e.append(el('strong','','尚无任务记录'),el('p','muted','在匹配工作台选择商品并提交匹配，任务记录会显示在这里。'));
-      $('#jobs-list').append(e);
-    }
+    renderJobSummary();
+    renderJobFilters();
+    renderJobRows();
     $('#rendered-films').replaceChildren(...jobs.filter(j=>j.kind==='render'&&j.status==='completed').map(j=>{
       const n=el('article');
       n.append(el('h3','','审核交付 · '+j.id.slice(0,8)));
