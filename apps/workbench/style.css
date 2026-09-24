@@ -96,11 +96,16 @@ aside{
   display:flex;flex-direction:column;z-index:30;
 }
 .brand{
-  font-size:15px;font-weight:650;letter-spacing:-.2px;line-height:1.3;
+  display:flex;align-items:center;gap:12px;
   color:var(--ink);padding:8px 10px;border-radius:var(--radius-sm);
   transition:background var(--t-fast) var(--ease);
 }
 .brand:hover{background:var(--surface-2)}
+.brand-mark{font-size:38px;font-weight:850;letter-spacing:-4px;line-height:.9}
+.brand-word{
+  font-size:9px;font-weight:700;letter-spacing:1.4px;line-height:1.5;
+  text-transform:uppercase;color:var(--ink-dim);
+}
 .workspace-label{
   font-size:11px;font-weight:500;color:var(--muted);
   margin:26px 10px 6px;
@@ -109,12 +114,20 @@ aside{
 nav{display:grid;gap:1px}
 nav button{
   text-align:left;border:0;background:transparent;
+  display:flex;align-items:center;gap:10px;
   padding:7px 10px;font-size:14px;font-weight:500;border-radius:var(--radius-sm);
   color:var(--ink-dim);
   transition:background var(--t-fast) var(--ease),color var(--t-fast) var(--ease);
 }
 nav button:hover{background:var(--surface-2);color:var(--ink)}
 nav button.active{background:var(--surface-3);color:var(--ink);font-weight:600}
+.nav-icon{
+  font-size:14px;line-height:1;width:16px;text-align:center;flex:none;
+  color:var(--muted);
+  transition:color var(--t-fast) var(--ease);
+}
+nav button:hover .nav-icon{color:var(--ink-dim)}
+nav button.active .nav-icon{color:var(--ink)}
 
 .aside-bottom{
   margin-top:auto;padding:12px 10px 4px;
@@ -446,6 +459,8 @@ footer{
 @media(max-width:800px){
   aside{position:static;width:100%;padding:14px;display:block}
   .workspace-label,.aside-bottom{display:none}
+  .brand-mark{font-size:26px;letter-spacing:-2px}
+  .brand-word{font-size:8px}
   nav{display:flex;gap:4px;margin-top:12px;overflow-x:auto}
   nav button{padding:6px 12px;white-space:nowrap}
   main{margin:0;padding:0 16px}
