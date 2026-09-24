@@ -1,12 +1,144 @@
-<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Creator Network · Jev × Hypit</title><link rel="stylesheet" href="/style.css"><body>
-<aside><a class="brand" href="/">cn<span>CREATOR<br>NETWORK</span></a><div class="workspace-label">WORKSPACE / 工作空间</div><nav><button data-view="match" class="active">↗ <span>匹配工作台</span></button><button data-view="catalog">▦ <span>商品与达人</span></button><button data-view="jobs">◷ <span>任务与审核</span></button><button data-view="films">▷ <span>视频交付</span></button></nav><div class="aside-bottom"><span class="status-dot"></span><span id="connection">正在连接</span><p>Jev × Hypit<br><small>Open source · v0.4</small></p><a href="https://github.com/Yeadon8888/jev-hypit-commerce" target="_blank" rel="noreferrer">GitHub ↗</a></div></aside>
-<main><header><span>AI AGENT NATIVE / DIGITAL CREATORS</span><a href="/docs" target="_blank">API 文档 ↗</a></header><div id="notice" role="status" hidden></div>
-<section id="auth" hidden><h2>连接工作空间</h2><p>此服务启用了访问令牌，令牌仅保存在当前页面内存中。</p><input id="token" type="password" placeholder="API token"><button id="connect" class="primary">连接</button></section>
-<section id="view-match"><div class="heading"><div><p class="eyebrow">FROM PRODUCT TO PERSONA</p><h1>让商品，找到它的表达者<span>。</span></h1><p class="sub">选一件商品，从数字达人网络中召回候选，审核后交给 Hypit。</p></div><div class="metric"><strong id="creator-count">—</strong><span>可用数字达人</span></div></div>
-<div class="flow"><span class="current">01 / 选择商品</span><i>→</i><span>02 / 召回与决策</span><i>→</i><span>03 / 审核与交付</span></div>
-<div class="match-layout"><section class="product-pane"><div class="section-top"><h2>商品输入</h2><span id="product-count"></span></div><select id="product-select" aria-label="选择商品"></select><div id="product-preview" class="product-preview"></div><h3 id="product-name"></h3><p id="product-description" class="muted"></p><div class="controls"><label>选择引擎<select id="engine"><option value="baseline">BM25 · 本地基线</option><option value="jev">Jev · 候选决策</option></select></label><label>候选数量<select id="top-k"><option>8</option><option>4</option><option>12</option></select></label></div><button id="run-match" class="primary wide">开始匹配 <span>↗</span></button><small id="engine-note">本地基线无需密钥。Jev 使用服务端配置。</small></section>
-<section class="result-pane"><div class="section-top"><h2>候选达人</h2><span id="result-status">等待输入</span></div><div id="empty-state"><div class="orbit-mark">✳</div><h2>从一件商品开始</h2><p>市场与语言过滤 → 候选召回 → 决策 → 审核<br>每一步保留任务记录。</p><div class="sample-faces" id="sample-faces"></div></div><div id="decision" hidden></div><div id="candidate-grid"></div><div id="review-actions" hidden><textarea id="review-note" placeholder="审核备注（可选）" aria-label="审核备注"></textarea><div><button id="approve" class="primary">确认选中的达人</button><button id="reject">不采用本次匹配</button><button id="render" hidden>生成双水印视频 ↗</button></div></div></section></div></section>
-<section id="view-catalog" hidden><div class="heading"><div><p class="eyebrow">THE NETWORK</p><h1>商品与数字达人<span>。</span></h1><p class="sub">人物为合成形象；专业方向、市场和语言是编辑设定，不由人脸推断。</p></div></div><div class="toolbar"><select id="catalog-kind"><option value="product">商品库</option><option value="creator">达人库</option></select><input id="search" placeholder="搜索名称、品类或标签" aria-label="搜索"><button id="import-button">导入 JSON</button><input type="file" id="import-file" accept="application/json" hidden></div><div id="catalog-grid" class="catalog-grid"></div></section>
-<section id="view-jobs" hidden><div class="heading"><div><p class="eyebrow">OBSERVABLE WORKFLOW</p><h1>每一次决策，都有来路<span>。</span></h1><p class="sub">持久化任务、候选快照、人工反馈与显式重试。</p></div><button id="refresh-jobs">刷新记录 ↻</button></div><div id="jobs-list"></div><pre id="job-events" hidden></pre></section>
-<section id="view-films" hidden><div class="heading"><div><p class="eyebrow">MADE WITH HYPIT</p><h1>从匹配，到内容<span>。</span></h1><p class="sub">1 秒开场 → 99 组矩阵填入 → 4 段 UGC → 开源地址。每次交付保留两个水印版本。</p></div></div><div class="film-grid"><article><video controls preload="metadata" src="/media/productions/matrix-ugc/videos/guanyi-matrix-ugc.mp4"></video><h2>贯一科技</h2><a href="/media/productions/matrix-ugc/videos/guanyi-matrix-ugc.mp4" download>下载 MP4 ↓</a></article><article><video controls preload="metadata" src="/media/productions/matrix-ugc/videos/yeadon-matrix-ugc.mp4"></video><h2>Yeadon</h2><a href="/media/productions/matrix-ugc/videos/yeadon-matrix-ugc.mp4" download>下载 MP4 ↓</a></article></div><p class="muted">这是归档的展示短片。匹配工作台生成的是审核结果对应的 15 秒商品与达人视频；UGC 生成为独立素材流程。</p><div id="rendered-films"></div></section>
-<footer>CREATOR NETWORK <span>Open infrastructure for product-to-creator matching.</span></footer></main><script src="/app.js" type="module"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creator Network</title>
+<link rel="stylesheet" href="/style.css?v=4">
+<body>
+<aside>
+  <a class="brand" href="/">Creator Network</a>
+  <div class="workspace-label">工作空间</div>
+  <nav>
+    <button data-view="match" class="active">匹配工作台</button>
+    <button data-view="catalog">商品与达人</button>
+    <button data-view="jobs">任务记录</button>
+    <button data-view="films">视频交付</button>
+  </nav>
+  <div class="aside-bottom">
+    <span class="status-dot"></span><span id="connection">正在连接</span>
+    <a href="https://github.com/Yeadon8888/jev-hypit-commerce" target="_blank" rel="noreferrer">GitHub 仓库</a>
+  </div>
+</aside>
+<main>
+  <header>
+    <span>Creator Network · v0.4</span>
+    <a href="/docs" target="_blank">API 文档</a>
+  </header>
+  <div id="notice" role="status" hidden></div>
+  <section id="auth" hidden>
+    <h2>连接工作空间</h2>
+    <p>此服务启用了访问令牌，令牌仅保存在当前页面内存中。</p>
+    <input id="token" type="password" placeholder="API token">
+    <button id="connect" class="primary">连接</button>
+  </section>
+  <section id="view-match">
+    <div class="heading">
+      <div>
+        <h1>匹配工作台</h1>
+        <p class="sub">选择商品，召回候选数字达人，人工审核后可生成交付视频。</p>
+      </div>
+      <div class="metric"><strong id="creator-count">—</strong><span>可用数字达人</span></div>
+    </div>
+    <div class="flow">
+      <span class="current">01 选择商品</span><i>→</i><span>02 召回与决策</span><i>→</i><span>03 审核与交付</span>
+    </div>
+    <div class="match-layout">
+      <section class="product-pane">
+        <div class="section-top"><h2>商品输入</h2><span id="product-count"></span></div>
+        <select id="product-select" aria-label="选择商品"></select>
+        <div id="product-preview" class="product-preview"></div>
+        <h3 id="product-name"></h3>
+        <p id="product-description" class="muted"></p>
+        <div class="controls">
+          <label>选择引擎
+            <select id="engine">
+              <option value="baseline">BM25 · 本地基线</option>
+              <option value="jev">Jev · 候选决策</option>
+            </select>
+          </label>
+          <label>候选数量
+            <select id="top-k">
+              <option>8</option>
+              <option>4</option>
+              <option>12</option>
+            </select>
+          </label>
+        </div>
+        <button id="run-match" class="primary wide">开始匹配</button>
+        <small id="engine-note"></small>
+      </section>
+      <section class="result-pane">
+        <div class="section-top"><h2>候选达人</h2><span id="result-status">等待输入</span></div>
+        <div id="empty-state">
+          <h2>尚未运行匹配</h2>
+          <p>选择商品后点击「开始匹配」，流程包含市场与语言过滤、候选召回、决策与审核记录。</p>
+          <div class="sample-faces" id="sample-faces"></div>
+        </div>
+        <div id="decision" hidden></div>
+        <div id="candidate-grid"></div>
+        <div id="review-actions" hidden>
+          <textarea id="review-note" placeholder="审核备注（可选）" aria-label="审核备注"></textarea>
+          <div>
+            <button id="approve" class="primary">确认选中的达人</button>
+            <button id="reject">不采用本次匹配</button>
+            <button id="render" hidden>生成双水印视频</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+  <section id="view-catalog" hidden>
+    <div class="heading">
+      <div>
+        <h1>商品与达人</h1>
+        <p class="sub">人物为合成形象；专业方向、市场和语言为编辑设定，不由人脸推断。</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <select id="catalog-kind">
+        <option value="product">商品库</option>
+        <option value="creator">达人库</option>
+      </select>
+      <input id="search" placeholder="搜索名称、品类或标签" aria-label="搜索">
+      <button id="import-button">导入 JSON</button>
+      <input type="file" id="import-file" accept="application/json" hidden>
+    </div>
+    <div id="catalog-grid" class="catalog-grid"></div>
+  </section>
+  <section id="view-jobs" hidden>
+    <div class="heading">
+      <div>
+        <h1>任务记录</h1>
+        <p class="sub">匹配与渲染任务的持久化记录，支持查看详情与失败重试。</p>
+      </div>
+      <button id="refresh-jobs">刷新</button>
+    </div>
+    <div id="jobs-list"></div>
+    <pre id="job-events" hidden></pre>
+  </section>
+  <section id="view-films" hidden>
+    <div class="heading">
+      <div>
+        <h1>视频交付</h1>
+        <p class="sub">展示短片与审核生成的交付视频；审核流程交付的视频保留两个水印版本。</p>
+      </div>
+    </div>
+    <div class="film-grid">
+      <article>
+        <video controls preload="metadata" src="/media/productions/matrix-ugc/videos/guanyi-matrix-ugc.mp4"></video>
+        <h2>贯一科技</h2>
+        <a href="/media/productions/matrix-ugc/videos/guanyi-matrix-ugc.mp4" download>下载 MP4</a>
+      </article>
+      <article>
+        <video controls preload="metadata" src="/media/productions/matrix-ugc/videos/yeadon-matrix-ugc.mp4"></video>
+        <h2>Yeadon</h2>
+        <a href="/media/productions/matrix-ugc/videos/yeadon-matrix-ugc.mp4" download>下载 MP4</a>
+      </article>
+    </div>
+    <div id="rendered-films"></div>
+  </section>
+  <footer>Creator Network<span>v0.4</span></footer>
+</main>
+<script src="/app.js" type="module"></script>
+</body>
+</html>
